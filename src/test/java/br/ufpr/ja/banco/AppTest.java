@@ -35,5 +35,6 @@ public class AppTest
     {
         System.out.println("É NOIS");
         assertTrue( true );
+        System.out.println("OPA");
     }
 }
