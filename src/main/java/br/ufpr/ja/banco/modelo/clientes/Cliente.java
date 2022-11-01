@@ -2,10 +2,14 @@ package br.ufpr.ja.banco.modelo.clientes;
 
 public class Cliente {
 
-	String nome;
-	String sobrenome;
-	String cpf;
-	String email;
+	
+	public static int CONTAGEM = 0;
+	
+	public String nome;
+	public String cpf;
+	public String email;
+	public String nomeDaMae;
 	
 	
+
 }
