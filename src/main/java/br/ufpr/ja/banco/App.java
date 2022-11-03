@@ -15,24 +15,25 @@ public class App
         
         
         Cliente zeh = new Cliente();
-        zeh.cpf = "0123456789";  // setando os atributos do objeto após a criação
-        zeh.nome = "Zé";
-        zeh.email = "ze@bol.com.br";
+        zeh.setCpf("0123456789");
+        zeh.setNome("Zé");
+        zeh.setEmail("ze@bol.com.br");
         		
         Conta conta1 = new Conta(1010, 123, zeh); 
         // usando um construtor personalizado que já passa
         // informações para dentro do objeto
         
-        zeh.nome = "José da Silva";
+        zeh.setNome("José da Silva");
         
         Cliente maria = new Cliente();
-        maria.cpf = "27272727272";
-        maria.nome = "Maria";
+        maria.setCpf("9876543210");
+        maria.setNome("Maria");
+        maria.setEmail("maria@bol.com.br");
         
         
         Conta conta2 = new Conta(1011, 124, maria, 1000);
         
-        System.out.println(conta2.saldo);
+        System.out.println(conta2.getSaldo());
         
         conta1.depositar(1000);
         

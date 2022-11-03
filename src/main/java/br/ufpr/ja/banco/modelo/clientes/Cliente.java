@@ -1,15 +1,54 @@
 package br.ufpr.ja.banco.modelo.clientes;
 
 public class Cliente {
+	
+	private String nome;
+	private String cpf;
+	private String email;
+	private String nomeDaMae;
+	
+	
+	public Cliente() { }
+	
+	public Cliente(String nome, String cpf, String email, String nomeDaMae) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.nomeDaMae = nomeDaMae;
+	}
 
+	public String getNome() {
+		return nome;
+	}
 	
-	public static int CONTAGEM = 0;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
-	public String nome;
-	public String cpf;
-	public String email;
-	public String nomeDaMae;
+	public String getCpf() {
+		return cpf;
+	}
 	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getNomeDaMae() {
+		return nomeDaMae;
+	}
+	
+	public void setNomeDaMae(String nomeDaMae) {
+		this.nomeDaMae = nomeDaMae;
+	}
+
 	
 
 }
