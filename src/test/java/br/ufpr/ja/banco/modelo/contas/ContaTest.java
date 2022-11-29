@@ -41,13 +41,13 @@ class ContaTest {
 	}
 
 	@Test
-	void quandoDepositarDentroDoLimite() {
+	void quandoDepositarDentroDoLimite() throws DepositoAcimaDoLimiteException {
 	
 		// PREPARAÇÃO DO TESTE
         assertEquals(0, contaOrigem.getSaldo()); // pré-condição
         
         // EXECUÇÃO
-        contaOrigem.depositar(1000);
+        contaOrigem.depositar(1000); // TODO: colocar assertDoesNotThrow
         
         // VERIFICAR
         assertEquals(1000, contaOrigem.getSaldo()); // pós-condição
@@ -62,7 +62,8 @@ class ContaTest {
         assertEquals(0, contaOrigem.getSaldo()); // pré-condição
         
         // EXECUÇÃO
-        contaOrigem.depositar(1800);
+        assertThrows(DepositoAcimaDoLimiteException.class, 
+        		() -> contaOrigem.depositar(1800));
         
         // VERIFICAR
         assertEquals(0, contaOrigem.getSaldo()); // pós-condição
@@ -71,14 +72,14 @@ class ContaTest {
 	
 	
 	@Test
-	void quandoSacarComSaldoSuficiente() {
+	void quandoSacarComSaldoSuficiente() throws DepositoAcimaDoLimiteException, SaldoInsuficienteException {
 		
 		// PREPARAÇÃO DO TESTE
         contaOrigem.depositar(1000);
         assertEquals(1000, contaOrigem.getSaldo()); // pré-condição
         
         // EXECUTAR:
-        contaOrigem.sacar(400);
+        contaOrigem.sacar(400); // TODO: colocar assertDoesNotThrow
         
         //VERIFICAR:
         assertEquals(600, contaOrigem.getSaldo());
@@ -86,14 +87,15 @@ class ContaTest {
 	}
 	
 	@Test
-	void quandoSacarSemSaldoSuficiente() {
+	void quandoSacarSemSaldoSuficiente() throws DepositoAcimaDoLimiteException {
         
 		// PREPARAÇÃO DO TESTE
         contaOrigem.depositar(1000);
         assertEquals(1000, contaOrigem.getSaldo()); // pré-condição
         
         // EXECUTAR:
-        contaOrigem.sacar(1500);
+        assertThrows(SaldoInsuficienteException.class,
+        		() -> contaOrigem.sacar(1500));
         
         // VERIFICAR:
         assertEquals(1000, contaOrigem.getSaldo());
@@ -101,7 +103,7 @@ class ContaTest {
 	
 	
 	@Test
-	void quandoTransferirComSaldoSuficienteNaOrigem() {
+	void quandoTransferirComSaldoSuficienteNaOrigem() throws DepositoAcimaDoLimiteException, TransferenciaInvalidaException {
 		
 		// PREPARAÇÃO DO TESTE
         contaOrigem.depositar(1000);
@@ -119,7 +121,7 @@ class ContaTest {
 	
     
     @Test
-    void quandoTransferirSemSaldoSuficienteNaOrigem() {
+    void quandoTransferirSemSaldoSuficienteNaOrigem() throws DepositoAcimaDoLimiteException {
     	
     	// PREPARAÇÃO DO TESTE
         contaOrigem.depositar(300);  // CHAMADA DO MÉTODO --> MODIFICA O OBJETO
@@ -128,7 +130,8 @@ class ContaTest {
         assertEquals(0, contaDestino.getSaldo());
         
         // EXECUÇÃO
-        contaOrigem.transferir(400, contaDestino);
+        assertThrows(TransferenciaInvalidaException.class,
+        		() -> contaOrigem.transferir(400, contaDestino));
         
         // VERIFICAÇÃO
         assertEquals(300, contaOrigem.getSaldo());
@@ -137,7 +140,7 @@ class ContaTest {
     }
     
     @Test
-    void quandoTransferirSemgLimiteNoDestino() {
+    void quandoTransferirSemgLimiteNoDestino() throws DepositoAcimaDoLimiteException {
     	
     	// PREPARAÇÃO DO TESTE
         contaOrigem.depositar(1500);  // CHAMADA DO MÉTODO --> MODIFICA O OBJETO
@@ -147,7 +150,8 @@ class ContaTest {
         assertEquals(1000, contaDestino.getLimite());
         
         // EXECUÇÃO 
-        contaOrigem.transferir(1500, contaDestino);
+        assertThrows(TransferenciaInvalidaException.class,
+        		() -> contaOrigem.transferir(1500, contaDestino));
         
         // VERIFICAÇÃO
         assertEquals(1500, contaOrigem.getSaldo());

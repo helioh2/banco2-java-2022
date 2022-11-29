@@ -2,6 +2,7 @@ package br.ufpr.ja.banco;
 
 import br.ufpr.ja.banco.modelo.clientes.Cliente;
 import br.ufpr.ja.banco.modelo.contas.Conta;
+import br.ufpr.ja.banco.modelo.contas.DepositoAcimaDoLimiteException;
 
 /**
  * Hello world!
@@ -35,7 +36,12 @@ public class App
         
         System.out.println(conta2.getSaldo());
         
-        conta1.depositar(1000);
+        try {
+			conta1.depositar(1000);
+		} catch (DepositoAcimaDoLimiteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         System.out.println(conta1.getSaldo());
         

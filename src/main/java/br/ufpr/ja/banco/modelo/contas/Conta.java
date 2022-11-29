@@ -59,28 +59,25 @@ public class Conta {
 		return this.limite;
 	}
 	
-	public void setLimite() {
+	public void setLimite(double limite) {
 		this.limite = limite;
 	}
 
 	
-	public boolean sacar(double valor) {
-		if (valor > this.saldo) {
-			System.out.println("SALDO INSUFICIENTE PARA O VALOR SOLICITADO");
-			return false;
-		} else {
+	public void sacar(double valor) throws SaldoInsuficienteException {
+		if (valor > this.saldo) { // caso de exceção
+			throw new SaldoInsuficienteException("ERRO: Saldo insuficiente para saque.");
+		} else { // fluxo principal
 			this.saldo = this.saldo - valor;
-			return true;
 		}
 	}
 	
-	public boolean depositar(double valor) {
+	public void depositar(double valor) throws DepositoAcimaDoLimiteException {
 		if (valor > this.limite) {
-			System.out.println("VALOR DEPOSITADO ACIMA DO LIMITE");
-			return false;
+//			System.out.println("VALOR DEPOSITADO ACIMA DO LIMITE");
+			throw new DepositoAcimaDoLimiteException("ERRO: Valor depositado acima do limite.");
 		} else {
 			this.saldo += valor;
-			return true;
 		}		
 	}
 	
@@ -88,22 +85,29 @@ public class Conta {
 	 * Transfere um 'valor' do saldo da conta 'this' para a 'contaDestino'.
 	 * @param valor
 	 * @param contaDestino
+	 * @throws TransferenciaInvalidaException 
 	 */
-	public void transferir(double valor, Conta contaDestino) {
+	public void transferir(double valor, Conta contaDestino) throws TransferenciaInvalidaException {
 		
 //		this.saldo -= valor; // this = este objeto (objeto atual)
 //		contaDestino.saldo += valor;
 		
 		// REFATORAÇÃO:
-		boolean conseguiuSacar = this.sacar(valor);
-		if (conseguiuSacar) {
-			boolean conseguiuDepositar = contaDestino.depositar(valor);
-			if (!conseguiuDepositar) {
-				// DESFAZER O SAQUE NO THIS:
-				this.saldo += valor;
-			}
+		try {
+			this.sacar(valor);
+		} catch (SaldoInsuficienteException e) {
+			System.out.println(e.getMessage());
+			throw new TransferenciaInvalidaException("ERRO: Transferência inválida: " + e.getMessage());
 		}
 		
+		try {
+			contaDestino.depositar(valor);
+		} catch (DepositoAcimaDoLimiteException e) {
+			System.out.println(e.getMessage());
+			// rollback (desfazer o saque)
+			this.saldo += valor;
+			throw new TransferenciaInvalidaException("ERRO: Transferência inválida: " + e.getMessage());
+		}
 	}
 	
 	
