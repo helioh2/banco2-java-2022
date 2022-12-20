@@ -2,6 +2,9 @@ package br.ufpr.ja.banco;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import br.ufpr.ja.banco.modelo.contas.Conta;
 import br.ufpr.ja.banco.modelo.contas.DepositoAcimaDoLimiteException;
@@ -59,12 +62,26 @@ public class BrincandoComExcecoes {
 		}
 
 		// LEITURA DE ARQUIVOS (EXEMPLO DE EXCEÇÃO CHECKED)
-		FileInputStream arquivo = null;
+		FileReader arquivo = null;
 		try {
-			arquivo = new FileInputStream("arquivo.txt");
+			arquivo = new FileReader("arquivo.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			try {
+				arquivo.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
+		
+		try {
+			int leitura = arquivo.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		System.out.println("SEGUE A EXECUÇÃO NORMAL DO PROGRAMA 3");
 

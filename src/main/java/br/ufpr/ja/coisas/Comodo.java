@@ -1,5 +1,6 @@
 package br.ufpr.ja.coisas;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,10 @@ public class Comodo {
 		return str;
 				
 	}
-	
+
+	public void pintar(Pessoa pintor, Color cor) {
+		System.out.println(pintor.getNome() + " pintou a parede");
+	}
 	
 
 }

@@ -1,11 +1,16 @@
 package br.ufpr.ja.coisas;
 
+import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class MainCoisas {
 	public static void main(String[] args) {
@@ -14,13 +19,13 @@ public class MainCoisas {
 		Pessoa pedro = new Pessoa("Pedro Sanches", "pedro01");
 		Pessoa fulano = new Pessoa("Fulano Silva", "fulano01");
 		
-		List<Pessoa> cabocos = Arrays.asList(maria, pedro, fulano);
+//		List<Pessoa> cabocos = Arrays.asList(maria, pedro, fulano);
 		
-//		List<Pessoa> cabocos = new ArrayList<>();
-//		
-//		cabocos.add(maria);
-//		cabocos.add(pedro);
-//		cabocos.add(fulano);
+		ArrayList<Pessoa> cabocos = new ArrayList<>();
+		
+		cabocos.add(maria);
+		cabocos.add(pedro);
+		cabocos.add(fulano);
 //		
 		System.out.println(cabocos);
 		
@@ -39,6 +44,10 @@ public class MainCoisas {
 		System.out.println(sala);
 		
 		maria.entrar(sala);
+		
+		Pessoa joaquim = new Pessoa("Joaquim", "joaquim123");
+		
+		sala.pintar(joaquim, Color.LIGHT_GRAY);
 		
 //		for (Pessoa pessoa: cabocos) {
 //			System.out.println("Nome: "+pessoa.getNome());
@@ -65,6 +74,19 @@ public class MainCoisas {
 		cabocos.forEach(pessoa -> {
 			System.out.println(pessoa);
 		});
+		
+		
+	
+//		for (Pessoa pessoa: cabocos) {
+//			
+//		}
+		
+		Iterator<Pessoa> iterator1 = cabocos.iterator();
+		while (iterator1.hasNext()) {
+			// FAZ ALGUMA COISA
+			System.out.println(iterator1.next());
+		}
+		
 		
 		FileWriter myWriter = null;
 		
