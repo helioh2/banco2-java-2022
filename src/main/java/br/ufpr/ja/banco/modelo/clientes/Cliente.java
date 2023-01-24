@@ -1,6 +1,8 @@
 package br.ufpr.ja.banco.modelo.clientes;
 
-public class Cliente {
+import br.ufpr.ja.banco.Autenticavel;
+
+public class Cliente implements Autenticavel {
 	
 	private String nome;
 	private String cpf;
@@ -47,6 +49,12 @@ public class Cliente {
 	
 	public void setNomeDaMae(String nomeDaMae) {
 		this.nomeDaMae = nomeDaMae;
+	}
+
+	@Override
+	public void autentica() {
+		System.out.println("AUTENTICANDO CLIENTE:" + this.getNome());
+		
 	}
 
 	

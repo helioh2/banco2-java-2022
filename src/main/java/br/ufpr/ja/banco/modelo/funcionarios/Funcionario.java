@@ -1,6 +1,6 @@
 package br.ufpr.ja.banco.modelo.funcionarios;
 
-public class Funcionario extends Object {
+public abstract class Funcionario {
 	
 	private long id;
 	private String nome;
@@ -48,15 +48,19 @@ public class Funcionario extends Object {
 	public long getId() {
 		return id;
 	}
+//	
+//	public double getBonificacao() {
+//		return this.salario * 0.10;
+//	}
+
+	// CONTRATO:
+	public abstract double getBonificacao(); // método abstrato
 	
-	public double getBonificacao() {
-		return this.salario * 0.10;
-	}
 	
 	@Override
 	public String toString() {
 		String str = "";
-		str += this.nome + "," + this.cpf;
+		str += this.nome + ", " + this.cpf;
 		return str;
 	}
 	

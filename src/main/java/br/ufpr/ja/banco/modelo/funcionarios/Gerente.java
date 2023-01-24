@@ -2,7 +2,9 @@ package br.ufpr.ja.banco.modelo.funcionarios;
 
 import java.util.List;
 
-public class Gerente extends Funcionario {
+import br.ufpr.ja.banco.Autenticavel;
+
+public class Gerente extends Funcionario implements Autenticavel {
 
 	private String senha;
 	private List<Funcionario> funcionariosSubordinados;
@@ -26,15 +28,25 @@ public class Gerente extends Funcionario {
 	public List<Funcionario> getFuncionariosSubordinados() {
 		return this.funcionariosSubordinados;
 	}
+
+	@Override
+	public double getBonificacao() {
+		return this.getSalario() * 0.1 + 500;
+	}
 	
 //	public void metodo1() {
 //		this.cpf += " oba";
 //	}
-
+	
 	@Override
-	public double getBonificacao() {
-		return super.getBonificacao() + 500;
+	public void autentica() {
+		System.out.println("AUTENTICANDO GERENTE:"+this.getNome());
+		
 	}
+	
+
+
+	
 	
 	
 	
