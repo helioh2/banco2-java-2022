@@ -1,6 +1,6 @@
 package br.ufpr.ja.coisas;
 
-public class Pessoa {
+public class Pessoa implements IPessoa {
 	
 	private String nome;
 	private String userName;
@@ -60,6 +60,11 @@ public class Pessoa {
 	}
 	
 	
+	public void receberMensagem(String mensagem) {
+		System.out.println("ENVIANDO MENSAGEM PARA A PESSOA "+this.nome);
+	}
+
+
 	
 	
 	

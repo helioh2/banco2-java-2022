@@ -28,10 +28,24 @@ public class Retangulo extends Figura {
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
-
+	
+	
+	// METODOS AUXILIARES:
+	private void redimensionarLargura(double proporcao) {
+		this.largura *= proporcao;
+	}
+	
+	private void redimensionarAltura(double proporcao) {
+		this.altura *= proporcao;
+	}
+	
+	
 	@Override
 	public void redimensionar(double proporcao) {
-		// TODO Auto-generated method stub
+//		this.largura = (int) (this.largura * proporcao);
+//		this.altura = (int) (this.altura * proporcao);
+		this.redimensionarLargura(proporcao);
+		this.redimensionarAltura(proporcao);
 
 	}
 
@@ -41,13 +55,15 @@ public class Retangulo extends Figura {
 		System.out.println("DESENHANDO UM RETANGULO");
 
 		Canvas canvas = Canvas.getCanvas();
-		canvas.draw(this, new DescricaoForma( new Rectangle(
-								this.getX(), 
-								this.getY(), 
-								this.largura, 
-								this.altura),
-							"red")
-				);
+		Rectangle shape = new Rectangle(
+							this.getX(), 
+							this.getY(), 
+							this.largura, 
+							this.altura);
+		
+		DescricaoForma descricao = new DescricaoForma(shape, "red");
+
+		canvas.draw(this, descricao);
 	}
 
 }

@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class MainCoisas {
+public class MainCoisas{
 	public static void main(String[] args) {
 		
 		Pessoa maria = new Pessoa("Maria Souza", "maria123");
