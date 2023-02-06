@@ -3,7 +3,7 @@ package br.ufpr.ja.figuras;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
-public class Circulo extends Figura {
+public class Circulo extends Figura implements AreaCalculavel {
 
 	private int raio;
 	
@@ -37,6 +37,8 @@ public class Circulo extends Figura {
 		
 	}
 	
-	
+	public int calcularArea() {
+		return (int) (Math.PI * Math.pow(raio, 2));
+	}
 
 }

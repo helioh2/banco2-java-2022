@@ -1,6 +1,7 @@
 package br.ufpr.ja.figuras;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.List;
 import java.util.*;

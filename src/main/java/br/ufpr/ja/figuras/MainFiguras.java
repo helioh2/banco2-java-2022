@@ -46,6 +46,7 @@ public class MainFiguras {
 		ret2.desenhar();
 		quad1.desenhar();
 		
+		
 	}
 
 }

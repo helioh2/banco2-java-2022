@@ -2,7 +2,7 @@ package br.ufpr.ja.figuras;
 
 import java.awt.Rectangle;
 
-public class Retangulo extends Figura {
+public class Retangulo extends Figura implements AreaCalculavel {
 
 	private int largura;
 	private int altura;
@@ -64,6 +64,10 @@ public class Retangulo extends Figura {
 		DescricaoForma descricao = new DescricaoForma(shape, "red");
 
 		canvas.draw(this, descricao);
+	}
+
+	public int calcularArea() {
+		return largura*altura;
 	}
 
 }

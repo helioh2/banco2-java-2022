@@ -1,0 +1,120 @@
+'''
+Let's play Tic Tac Toe.
+
+X's win ->
+X - O
+- X O
+- - X
+
+Nobody wins ->
+X O X
+O X O
+O X O 
+
+Create the data structures and classes to represent an n x n Tic Tac Toe board.
+'''
+
+
+class TicTacToe:
+
+    def __init__(self, n=3):
+        self.n = n
+        self.board = [[None for _ in range(self.n)] for _ in range(self.n)] 
+
+    def place(self, symbol, lin, col):
+        if not self.board[lin][col]:
+            self.board[lin][col] = symbol
+         #TODO: throw exception when position is not none
+        return symbol
+
+    def last_player_won(self, last_symbol) -> bool:
+        
+        # checking the column case:
+        for col in range(self.n):
+            if all(self.board[lin][col] == last_symbol for lin in range(self.n)):
+                return True
+
+        # checking line case
+        for lin in range(self.n):
+            if all(self.board[lin][col] == last_symbol for col in range(self.n)):
+                return True
+
+
+        # diagonal case
+        # 0 0
+        # 1 1
+        # 2 2
+
+        if all(self.board[i][i] == last_symbol for i in range(self.n)):
+            return True
+
+
+        
+
+        return False
+
+
+
+    def __str__(self):
+        string = ""
+        for lin in range(self.n):
+            for col in range(self.n):
+                if not self.board[lin][col]:
+                    string += "- "
+                else:
+                    string += str(self.board[lin][col]) + " "
+            string += "\n"
+        return string
+
+
+tictactoe1 = TicTacToe(n=3)
+print(tictactoe1)
+
+tictactoe1.place("X", 0, 0) ## first move
+assert tictactoe1.board == [["X", None, None],
+                        [None, None, None],
+                        [None, None, None]]
+
+tictactoe1.place("0", 0, 0) 
+assert tictactoe1.board == [["X", None, None],
+                        [None, None, None],
+                        [None, None, None]]
+
+
+last_symbol = tictactoe1.place("0", 0, 1) 
+last_symbol = tictactoe1.place("X", 1, 0) 
+last_symbol = tictactoe1.place("0", 0, 2) 
+
+assert not tictactoe1.last_player_won(last_symbol)
+
+last_symbol = tictactoe1.place("X", 2, 0) 
+
+print(tictactoe1)
+
+assert tictactoe1.last_player_won(last_symbol)
+
+
+
+tictactoe2 = TicTacToe(n=3)
+
+
+last_symbol = tictactoe2.place("0", 0, 0) 
+last_symbol = tictactoe2.place("0", 0, 1) 
+last_symbol = tictactoe2.place("0", 0, 2) 
+
+print(tictactoe2)
+
+assert tictactoe2.last_player_won(last_symbol)
+
+
+
+# descending diagonal case
+tictactoe3 = TicTacToe(n=3)
+
+last_symbol = tictactoe3.place("0", 0, 0) 
+last_symbol = tictactoe3.place("0", 1, 1) 
+last_symbol = tictactoe3.place("0", 2, 2) 
+
+print(tictactoe3)
+
+assert tictactoe3.last_player_won(last_symbol)
