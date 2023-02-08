@@ -30,6 +30,8 @@ public class ControleBonificacoes {
 //} else if (funcionario instanceof Funcionario) {
 //	double bonificacao = funcionario.getSalario()*0.1;
 //	soma += bonificacao;
+
+//} else if {
 //
 //}
 // ...
